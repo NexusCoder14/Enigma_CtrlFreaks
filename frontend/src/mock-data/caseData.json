@@ -1,24 +1,32 @@
 {
-  "deceasedInfo": {
-    "name": "Anil Sharma",
-    "dateOfDeath": "2023-08-15"
-  },
+  "caseInfo": { "name": "Anil Sharma", "dateOfPassing": "2024-02-18", "referenceName": "Anil Sharma estate" },
+  "language": "en",
+  "currentUserId": 1,
+  "documents": [
+    { "id": "doc-1", "name": "SBI savings statement.pdf", "status": "analyzed", "size": 284000, "type": "application/pdf", "addedToCase": true },
+    { "id": "doc-2", "name": "LIC policy schedule.pdf", "status": "analyzed", "size": 418000, "type": "application/pdf", "addedToCase": true },
+    { "id": "doc-3", "name": "ICICI home loan letter.pdf", "status": "analyzed", "size": 193000, "type": "application/pdf", "addedToCase": true }
+  ],
+  "documentMentionedNames": [
+    { "name": "Priya Sharma", "role": "nominee" },
+    { "name": "Rohan Sharma", "role": "son" }
+  ],
   "familyMembers": [
-    { "name": "Aarti Sharma", "relationship": "Spouse" },
-    { "name": "Rohan Sharma", "relationship": "Son" }
-  ],
-  "assets": [
-    { "type": "Bank Account", "value": 500000, "status": "Pending Closure" },
-    { "type": "Mutual Funds", "value": 1200000, "status": "Transferred" }
-  ],
-  "liabilities": [
-    { "type": "Home Loan", "amount": 2000000, "status": "Active" }
-  ],
-  "tasks": [
-    { "id": "t1", "title": "Obtain Death Certificate", "completed": true },
-    { "id": "t2", "title": "Close Bank Accounts", "completed": false }
+    { "id": 1, "name": "Priya Sharma", "relationship": "Spouse", "tier": 1, "verified": true, "confidence": 96, "evidence": ["Listed as nominee on LIC policy", "Joint holder on SBI savings account"], "accessDescription": "Can view case details and approve sensitive actions." },
+    { "id": 2, "name": "Rohan Sharma", "relationship": "Child", "tier": 1, "verified": true, "confidence": 91, "evidence": ["Named as son in the insurance record"], "accessDescription": "Can view case details and approve sensitive actions." },
+    { "id": 3, "name": "Meera Sharma", "relationship": "Sibling", "tier": 2, "verified": false, "confidence": 42, "evidence": ["Name was declared by the family"], "accessDescription": "Sensitive actions need approval from a verified Tier 1 family member." }
   ],
   "confidenceLedger": [
-    { "action": "Identify Assets", "confidenceScore": 85 }
+    { "id": "ledger-1", "title": "SBI Savings Account", "category": "Asset", "institution": "State Bank of India", "amount": 485000, "status": "CONFIRMED", "confidence": 98, "sourceDocument": "SBI savings statement.pdf", "evidence": ["Account holder matches death certificate", "Balance appears in February statement"], "missingInfo": [], "suggestedAction": "Nominee can submit the closure request." },
+    { "id": "ledger-2", "title": "LIC Jeevan Anand Policy", "category": "Policy", "institution": "LIC of India", "amount": 1500000, "status": "PARTIAL", "confidence": 72, "sourceDocument": "LIC policy schedule.pdf", "evidence": ["Policy number and sum assured found"], "missingInfo": ["Maturity or claim settlement record"], "suggestedAction": "Check for a claim acknowledgement after the nominee submits the form." },
+    { "id": "ledger-3", "title": "ICICI Home Loan", "category": "Liability", "institution": "ICICI Bank", "amount": 2280000, "status": "PARTIAL", "confidence": 64, "sourceDocument": "ICICI home loan letter.pdf", "evidence": ["Outstanding balance shown on January letter"], "missingInfo": ["Most recent repayment statement"], "suggestedAction": "Ask ICICI for a current foreclosure statement." },
+    { "id": "ledger-4", "title": "HDFC Fixed Deposit", "category": "Asset", "institution": "HDFC Bank", "amount": 300000, "status": "MISSING", "confidence": 38, "sourceDocument": "SBI savings statement.pdf", "evidence": ["FD interest credit appears in the statement"], "missingInfo": ["FD receipt dated 2022", "Closure document after maturity"], "suggestedAction": "Check for a passbook entry after the maturity date." }
+  ],
+  "tasks": [
+    { "id": "task-1", "title": "Request LIC claim form", "description": "Ask LIC for the claim form and nominee checklist.", "institution": "LIC of India", "requiredDocuments": ["Policy schedule", "Death certificate", "Nominee ID"], "effort": "quick", "status": "IN_PROGRESS", "requiresApproval": false, "assignee": "Priya Sharma" },
+    { "id": "task-2", "title": "Close SBI savings account", "description": "Submit the closure request and transfer the remaining balance.", "institution": "State Bank of India", "requiredDocuments": ["Death certificate", "Cancelled cheque", "Nominee ID"], "effort": "moderate", "status": "NOT_STARTED", "requiresApproval": true, "assignee": null },
+    { "id": "task-3", "title": "Locate HDFC fixed deposit receipt", "description": "Look through files for the FD receipt or a post-maturity passbook entry.", "institution": "HDFC Bank", "requiredDocuments": ["FD receipt or passbook"], "effort": "quick", "status": "NOT_STARTED", "requiresApproval": false, "assignee": null },
+    { "id": "task-4", "title": "Request home loan foreclosure letter", "description": "Ask ICICI for the current amount required to close the home loan.", "institution": "ICICI Bank", "requiredDocuments": ["Loan account number", "Death certificate", "Legal heir proof"], "effort": "heavy", "status": "NOT_STARTED", "requiresApproval": true, "assignee": null },
+    { "id": "task-5", "title": "Upload death certificate", "description": "Keep a clear scan available for each institution's claim process.", "institution": "Case documents", "requiredDocuments": ["Death certificate"], "effort": "quick", "status": "COMPLETED", "requiresApproval": false, "assignee": "Rohan Sharma" }
   ]
 }
